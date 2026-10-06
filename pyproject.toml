@@ -1,0 +1,17 @@
+[project]
+name = "speedtest-analysis"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "apathydevil", email = "76252555+apathydevil@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+speedtest-analysis = "speedtest_analysis:main"
+
+[build-system]
+requires = ["uv_build>=0.12.9,<0.13.0"]
+build-backend = "uv_build"
