@@ -2,6 +2,7 @@ import os
 
 import requests
 from dotenv import load_dotenv
+from speedtest_analysis.storage import save_to_csv
 
 load_dotenv()
 
@@ -41,7 +42,7 @@ def parsing_speedtest_data(results):
             "created_at": result["created_at"],
             "ping": result["ping"],
             "download": result["download_bits"] / 1_000_000,
-            "upload": result["upload_bits"] / 1_000_000
+            "upload": result["upload_bits"] / 1_000_000,
         }
         parsed.append(parsed_dict)
     return parsed
@@ -50,5 +51,6 @@ def parsing_speedtest_data(results):
 if __name__ == "__main__":
     results = fetch_speedtest_data()
     parsed = parsing_speedtest_data(results)
+    save_to_csv(parsed)
     print(len(parsed))
     print(parsed[0])
