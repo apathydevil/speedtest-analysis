@@ -28,5 +28,27 @@ def fetch_speedtest_data():
         print(e)
 
 
+def parsing_speedtest_data(results):
+    parsed = []
+    for result in results:
+        if result["status"] != "completed":
+            continue
+        if "upload_bits" not in result:
+            continue
+        if "download_bits" not in result:
+            continue
+        parsed_dict = {
+            "created_at": result["created_at"],
+            "ping": result["ping"],
+            "download": result["download_bits"] / 1_000_000,
+            "upload": result["upload_bits"] / 1_000_000
+        }
+        parsed.append(parsed_dict)
+    return parsed
+
+
 if __name__ == "__main__":
-    print(len(fetch_speedtest_data()))
+    results = fetch_speedtest_data()
+    parsed = parsing_speedtest_data(results)
+    print(len(parsed))
+    print(parsed[0])
