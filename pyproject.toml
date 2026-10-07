@@ -7,7 +7,10 @@ authors = [
     { name = "apathydevil", email = "76252555+apathydevil@users.noreply.github.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "dotenv>=0.9.9",
+    "requests>=2.34.2",
+]
 
 [project.scripts]
 speedtest-analysis = "speedtest_analysis:main"
