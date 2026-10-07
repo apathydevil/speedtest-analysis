@@ -2,6 +2,7 @@ import os
 
 import requests
 from dotenv import load_dotenv
+
 from speedtest_analysis.storage import save_to_csv
 
 load_dotenv()
@@ -13,7 +14,7 @@ headers = {"Authorization": f"Bearer {token}", "Accept": "application/json"}
 params = {"page[size]": 500}
 
 
-def fetch_speedtest_data():
+def fetch_speedtest_data() -> list:
     results = []
     next_url = f"{url}/api/v1/results"
     try:
@@ -27,9 +28,9 @@ def fetch_speedtest_data():
         return results
     except requests.RequestException as e:
         print(e)
+        return []
 
-
-def parsing_speedtest_data(results):
+def parsing_speedtest_data(results) -> list:
     parsed = []
     for result in results:
         if result["status"] != "completed":
